@@ -1,0 +1,53 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+// Медіа-запит за назвою точки зупину: @include respond('phone') { ... }
+@mixin respond($name) {
+    @media (max-width: map.get($breakpoints, $name)) {
+        @content;
+    }
+}
+
+// Кільце фокусу заданого кольору
+@mixin focus-ring($color: $color-accent) {
+    outline: none;
+    border-color: $color;
+    box-shadow: 0 0 0 3px rgba($color, 0.2);
+}
+
+// Кнопка з кольором фону та кольором при наведенні
+@mixin button($bg, $bg-hover, $color: $color-white) {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 1.75rem;
+    border: none;
+    border-radius: $radius;
+    background-color: $bg;
+    color: $color;
+    font-family: $font-body;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color $transition, transform $transition, opacity $transition;
+
+    &:hover {
+        background-color: $bg-hover;
+        transform: translateY(-2px);
+    }
+}
+
+// Іконка-маркер у правій частині поля (SVG як data URI)
+@mixin field-icon($svg) {
+    background-image: url("data:image/svg+xml;utf8,#{$svg}");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1.1rem;
+    padding-right: 2.5rem;
+}
+
+// Плейсхолдер-селектор для карток (підключається через @extend)
+%card {
+    background-color: $color-white;
+    border-radius: $radius;
+    box-shadow: 0 10px 30px rgba($color-text, 0.12);
+}

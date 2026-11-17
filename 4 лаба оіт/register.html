@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реєстрація — Мірево</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Стилі цієї сторінки скомпільовані з Sass: scss/auth.scss → css/auth.css -->
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <main class="auth-page">
+        <a href="index.html" class="auth-page__logo">Мірево</a>
+
+        <form class="auth-form" action="#" method="post">
+            <h1>Реєстрація</h1>
+            <p class="auth-form__subtitle">Створіть акаунт, щоб відстежувати замовлення</p>
+
+            <div class="field">
+                <label for="reg-name">Ім'я</label>
+                <input type="text" id="reg-name" name="name" placeholder="Ваше ім'я"
+                       pattern="[A-Za-zА-ЩЬЮЯҐЄІЇа-щьюяґєії'ʼ\- ]{2,30}" required>
+                <span class="hint">Від 2 до 30 літер (українська або латиниця)</span>
+                <span class="error-msg">Ім'я має містити лише літери, від 2 до 30 символів</span>
+            </div>
+
+            <div class="field">
+                <label for="reg-email">Електронна пошта</label>
+                <input type="email" id="reg-email" name="email" placeholder="you@example.com"
+                       pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" required>
+                <span class="hint">Наприклад: olena@gmail.com</span>
+                <span class="error-msg">Введіть коректну адресу, наприклад olena@gmail.com</span>
+            </div>
+
+            <div class="field">
+                <label for="reg-phone">Телефон</label>
+                <input type="tel" id="reg-phone" name="phone" placeholder="+380XXXXXXXXX"
+                       pattern="\+380\d{9}" required>
+                <span class="hint">Формат: +380 і ще 9 цифр без пробілів</span>
+                <span class="error-msg">Номер має бути у форматі +380XXXXXXXXX</span>
+            </div>
+
+            <div class="field">
+                <label for="reg-password">Пароль</label>
+                <input type="password" id="reg-password" name="password" placeholder="Мінімум 8 символів"
+                       minlength="8" pattern="(?=.*\d)(?=.*[A-Za-zА-Яа-яҐЄІЇґєії]).{8,}" required>
+                <span class="hint">Щонайменше 8 символів, хоча б одна літера та одна цифра</span>
+                <span class="error-msg">Пароль: мінімум 8 символів, літера + цифра</span>
+            </div>
+
+            <div class="field">
+                <label for="reg-password2">Повторіть пароль</label>
+                <input type="password" id="reg-password2" name="password2" placeholder="Повторіть пароль"
+                       minlength="8" pattern="(?=.*\d)(?=.*[A-Za-zА-Яа-яҐЄІЇґєії]).{8,}" required>
+                <span class="hint">Введіть той самий пароль ще раз</span>
+                <span class="error-msg">Пароль: мінімум 8 символів, літера + цифра</span>
+            </div>
+
+            <label class="agree">
+                <input type="checkbox" name="agree" required>
+                <span>Я погоджуюсь з умовами використання та обробкою персональних даних</span>
+            </label>
+
+            <p class="form-status" aria-live="polite"></p>
+
+            <button type="submit">Зареєструватися</button>
+            <button type="reset">Очистити</button>
+
+            <p class="auth-form__footer">Вже маєте акаунт? <a href="login.html">Увійти</a></p>
+        </form>
+
+        <a href="index.html" class="auth-page__back">На головну</a>
+    </main>
+</body>
+</html>

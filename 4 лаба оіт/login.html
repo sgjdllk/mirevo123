@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід — Мірево</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Стилі цієї сторінки скомпільовані з Sass: scss/auth.scss → css/auth.css -->
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <main class="auth-page">
+        <a href="index.html" class="auth-page__logo">Мірево</a>
+
+        <form class="auth-form" action="#" method="post">
+            <h1>Вхід</h1>
+            <p class="auth-form__subtitle">Раді бачити вас знову</p>
+
+            <div class="field">
+                <label for="login-email">Електронна пошта</label>
+                <input type="email" id="login-email" name="email" placeholder="you@example.com"
+                       pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" required>
+                <span class="hint">Пошта, вказана під час реєстрації</span>
+                <span class="error-msg">Введіть коректну адресу, наприклад olena@gmail.com</span>
+            </div>
+
+            <div class="field">
+                <label for="login-password">Пароль</label>
+                <input type="password" id="login-password" name="password" placeholder="Мінімум 8 символів"
+                       minlength="8" required>
+                <span class="hint">Щонайменше 8 символів</span>
+                <span class="error-msg">Пароль має містити щонайменше 8 символів</span>
+            </div>
+
+            <p class="form-status" aria-live="polite"></p>
+
+            <button type="submit">Увійти</button>
+            <button type="reset">Очистити</button>
+
+            <p class="auth-form__footer">Немає акаунту? <a href="register.html">Зареєструватися</a></p>
+        </form>
+
+        <a href="index.html" class="auth-page__back">На головну</a>
+    </main>
+</body>
+</html>

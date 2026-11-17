@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запрошення на «Вечір затишку» — Мірево</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/invitation.css">
+</head>
+<body>
+    <div class="toolbar">
+        <a href="index.html" class="toolbar-back">&larr; На головну</a>
+        <button type="button" class="btn-print" onclick="window.print()">&#128424; Друкувати</button>
+    </div>
+
+    <!-- ===================== ЗАПРОШЕННЯ ===================== -->
+    <article class="invitation">
+        <div class="invitation-inner">
+            <p class="inv-brand">Мірево</p>
+            <p class="inv-label">Запрошення</p>
+
+            <h1 class="inv-title">Вечір затишку</h1>
+            <p class="inv-subtitle">з нагоди відкриття нашого шоуруму</p>
+
+            <div class="inv-ornament" aria-hidden="true">&#10086;</div>
+
+            <p class="inv-text">
+                Шановний(-а) <span class="inv-blank"></span>,<br>
+                запрошуємо Вас провести тихий осінній вечір серед свічок, м'яких пледів
+                і запаху кориці. На Вас чекають майстер-клас з виготовлення ароматичних свічок,
+                глінтвейн та подарунок від «Мірево».
+            </p>
+
+            <dl class="inv-details">
+                <div>
+                    <dt>Дата</dt>
+                    <dd><time datetime="2026-11-28">28 листопада 2026</time></dd>
+                </div>
+                <div>
+                    <dt>Час</dt>
+                    <dd><time datetime="18:00">18:00</time></dd>
+                </div>
+                <div>
+                    <dt>Місце</dt>
+                    <dd>Шевченка 22, Київ</dd>
+                </div>
+            </dl>
+
+            <p class="inv-program"><strong>Програма:</strong> 18:00 — зустріч гостей · 18:30 — майстер-клас · 19:30 — чаювання та подарунки</p>
+            <p class="inv-note">Дрес-код: теплі бежеві відтінки. Підтвердіть, будь ласка, участь до 25 листопада за телефоном +38 (044) 123-45-67.</p>
+
+            <p class="inv-sign">З теплом, команда «Мірево»</p>
+        </div>
+    </article>
+
+    <!-- ===================== КОНВЕРТ ===================== -->
+    <article class="envelope" aria-label="Конверт для запрошення">
+        <div class="env-flap" aria-hidden="true"></div>
+
+        <div class="env-sender">
+            <p class="env-small">Від кого:</p>
+            <p><strong>ТОВ «Мірево»</strong></p>
+            <p>вул. Шевченка, 22</p>
+            <p>м. Київ</p>
+            <p class="env-index">01001</p>
+        </div>
+
+        <div class="env-stamp" aria-hidden="true">
+            <span>&#127810;</span>
+            <small>Україна · 2026</small>
+        </div>
+
+        <div class="env-seal" aria-hidden="true">М</div>
+
+        <div class="env-recipient">
+            <p class="env-small">Кому:</p>
+            <p class="env-line"></p>
+            <p class="env-small">Куди:</p>
+            <p class="env-line"></p>
+            <p class="env-line"></p>
+            <div class="env-index-boxes" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+    </article>
+</body>
+</html>

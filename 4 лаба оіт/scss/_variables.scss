@@ -1,0 +1,32 @@
+// ===== Змінні Sass: палітра та розміри сайту «Мірево» =====
+
+$color-bg: #faf6f0;
+$color-bg-secondary: #f0e6d8;
+$color-text: #3a2e24;
+$color-text-light: #6b5c4d;
+$color-primary: #8b6f4e;
+$color-primary-dark: #5c4a34;
+$color-accent: #c9a961;
+$color-white: #ffffff;
+$color-border: #ddd0bd;
+
+$color-success: #4f9a6b;
+$color-error: #c4554d;
+
+$font-heading: 'Playfair Display', serif;
+$font-body: 'Inter', sans-serif;
+
+$radius: 0.5rem;
+$transition: 0.3s ease;
+
+// Мапа станів поля: використовується в циклі @each
+$field-states: (
+    'valid': $color-success,
+    'invalid': $color-error,
+);
+
+// Точки зупину для медіа-запитів
+$breakpoints: (
+    'phone': 30rem,
+    'tablet': 56rem,
+);

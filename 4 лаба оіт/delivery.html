@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доставка та оплата — Мірево</title>
+
+    <!-- Bootstrap 5 (CSS) — підключення з CDN, скопійовано з getbootstrap.com -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+
+    <!-- Власні кольори «Мірево» поверх Bootstrap -->
+    <style>
+        :root {
+            --m-bg: #faf6f0;
+            --m-bg2: #f0e6d8;
+            --m-primary: #8b6f4e;
+            --m-dark: #5c4a34;
+            --m-accent: #c9a961;
+            --bs-body-font-family: 'Inter', sans-serif;
+            --bs-body-color: #3a2e24;
+            --bs-body-bg: #faf6f0;
+            --bs-link-color-rgb: 139, 111, 78;
+            --bs-link-hover-color-rgb: 201, 169, 97;
+        }
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Playfair Display', serif; color: var(--m-dark); }
+        .navbar-brand { font-weight: 700; font-size: 1.6rem; letter-spacing: .05em; }
+        .btn-mirevo { --bs-btn-bg: var(--m-primary); --bs-btn-border-color: var(--m-primary); --bs-btn-color: #fff;
+                      --bs-btn-hover-bg: var(--m-dark); --bs-btn-hover-border-color: var(--m-dark); --bs-btn-hover-color: #fff; }
+        .btn-outline-mirevo { --bs-btn-color: var(--m-primary); --bs-btn-border-color: var(--m-primary);
+                              --bs-btn-hover-bg: var(--m-primary); --bs-btn-hover-color: #fff; }
+        .bg-mirevo { background-color: var(--m-bg2) !important; }
+        .text-accent { color: var(--m-accent) !important; }
+        .feature-icon { width: 3.5rem; height: 3.5rem; font-size: 1.6rem; background: var(--m-bg2); color: var(--m-primary); }
+        .card { border-color: #ddd0bd; transition: transform .3s ease, box-shadow .3s ease; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 .75rem 1.5rem rgba(58,46,36,.12); }
+        .card.border-accent { border: 2px solid var(--m-accent); }
+        .accordion { --bs-accordion-active-bg: var(--m-bg2); --bs-accordion-active-color: var(--m-dark);
+                     --bs-accordion-btn-focus-box-shadow: 0 0 0 .25rem rgba(201,169,97,.25); }
+        .hero-delivery { background: linear-gradient(rgba(58,46,36,.55), rgba(58,46,36,.7)), url('images/hero-banner.jpg') center / cover; }
+        .carousel-item img { height: 22rem; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+<!-- ===== Navbar (шаблон Bootstrap: Navbar + Collapse) ===== -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Мірево</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Меню">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house"></i> Головна</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-grid"></i> Каталог
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="catalog.html#textile">Текстиль</a></li>
+                        <li><a class="dropdown-item" href="catalog.html#decor">Декор</a></li>
+                        <li><a class="dropdown-item" href="catalog.html#kitchen">Кухня</a></li>
+                        <li><a class="dropdown-item" href="catalog.html#candles">Свічки</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-heart"></i> Про нас</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="delivery.html"><i class="bi bi-truck"></i> Доставка</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#contacts"><i class="bi bi-telephone"></i> Контакти</a></li>
+            </ul>
+            <div class="d-flex gap-2">
+                <a href="login.html" class="btn btn-outline-mirevo">Увійти</a>
+                <a href="register.html" class="btn btn-mirevo">Реєстрація</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== Hero (шаблон Bootstrap: Heroes) ===== -->
+<header class="hero-delivery text-white text-center py-5">
+    <div class="container py-5">
+        <h1 class="display-5 fw-bold text-white">Доставка та оплата</h1>
+        <p class="lead col-lg-7 mx-auto mb-4">Доставляємо затишок по всій Україні: швидко, дбайливо упаковано й з листівкою від нас.</p>
+        <a href="#delivery" class="btn btn-lg btn-mirevo me-2">Способи доставки</a>
+        <a href="#faq" class="btn btn-lg btn-outline-light">Питання</a>
+    </div>
+</header>
+
+<main>
+    <!-- ===== Переваги (шаблон Bootstrap: Features) ===== -->
+    <section class="container py-5">
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center rounded-circle mb-3"><i class="bi bi-box-seam"></i></div>
+                <h3 class="h6">Дбайлива упаковка</h3>
+                <p class="small text-body-secondary mb-0">Кераміку пакуємо в крафт і стружку</p>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center rounded-circle mb-3"><i class="bi bi-lightning-charge"></i></div>
+                <h3 class="h6">Відправка за 24 год</h3>
+                <p class="small text-body-secondary mb-0">Замовлення до 15:00 — відправляємо сьогодні</p>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center rounded-circle mb-3"><i class="bi bi-gift"></i></div>
+                <h3 class="h6">Безкоштовно від 1500 грн</h3>
+                <p class="small text-body-secondary mb-0">Доставка у відділення за наш рахунок</p>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center rounded-circle mb-3"><i class="bi bi-arrow-repeat"></i></div>
+                <h3 class="h6">14 днів на повернення</h3>
+                <p class="small text-body-secondary mb-0">Без зайвих питань</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Способи доставки (шаблон Bootstrap: Pricing — картки) ===== -->
+    <section id="delivery" class="bg-mirevo py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Способи доставки</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+                <div class="col">
+                    <div class="card h-100 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-white"><h3 class="my-0 h5"><i class="bi bi-shop text-accent"></i> Самовивіз</h3></div>
+                        <div class="card-body d-flex flex-column">
+                            <p class="display-6 mb-1">0 <small class="fs-5 text-body-secondary">грн</small></p>
+                            <ul class="list-unstyled my-3">
+                                <li>Шоурум: Шевченка 22, Київ</li>
+                                <li>Щодня 10:00–21:00</li>
+                                <li>Готово через 2 години</li>
+                            </ul>
+                            <a href="index.html#contacts" class="btn btn-outline-mirevo mt-auto w-100">Як дістатися</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 rounded-3 shadow-sm border-accent">
+                        <div class="card-header py-3 text-white" style="background: var(--m-accent)"><h3 class="my-0 h5 text-white"><i class="bi bi-truck"></i> Нова пошта</h3></div>
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge rounded-pill text-bg-success align-self-center mb-2">Найпопулярніше</span>
+                            <p class="display-6 mb-1">від 70 <small class="fs-5 text-body-secondary">грн</small></p>
+                            <ul class="list-unstyled my-3">
+                                <li>Відділення, поштомат або кур'єр</li>
+                                <li>1–2 дні по Україні</li>
+                                <li>Оплата при отриманні</li>
+                            </ul>
+                            <a href="catalog.html" class="btn btn-mirevo mt-auto w-100">До каталогу</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-white"><h3 class="my-0 h5"><i class="bi bi-envelope-paper text-accent"></i> Укрпошта</h3></div>
+                        <div class="card-body d-flex flex-column">
+                            <p class="display-6 mb-1">від 45 <small class="fs-5 text-body-secondary">грн</small></p>
+                            <ul class="list-unstyled my-3">
+                                <li>У будь-яке відділення</li>
+                                <li>3–5 днів по Україні</li>
+                                <li>Лише передоплата</li>
+                            </ul>
+                            <a href="catalog.html" class="btn btn-outline-mirevo mt-auto w-100">До каталогу</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Оплата (таблиця Bootstrap) ===== -->
+    <section id="payment" class="container py-5">
+        <h2 class="text-center mb-4">Способи оплати</h2>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle bg-white shadow-sm rounded overflow-hidden">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Спосіб</th>
+                        <th scope="col">Комісія</th>
+                        <th scope="col">Коли списуються кошти</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><i class="bi bi-credit-card text-accent"></i> Картка Visa / Mastercard</td><td><span class="badge text-bg-success">0%</span></td><td>Одразу під час замовлення</td></tr>
+                    <tr><td><i class="bi bi-phone text-accent"></i> Apple Pay / Google Pay</td><td><span class="badge text-bg-success">0%</span></td><td>Одразу під час замовлення</td></tr>
+                    <tr><td><i class="bi bi-cash-coin text-accent"></i> Накладений платіж</td><td><span class="badge text-bg-warning">20 грн + 2%</span></td><td>При отриманні у відділенні</td></tr>
+                    <tr><td><i class="bi bi-bank text-accent"></i> Рахунок для юросіб</td><td><span class="badge text-bg-success">0%</span></td><td>Після оплати рахунку</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ===== Карусель Bootstrap ===== -->
+    <section class="bg-mirevo py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Так виглядає ваша посилка</h2>
+            <div id="packCarousel" class="carousel slide carousel-fade rounded-3 overflow-hidden shadow" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#packCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Слайд 1"></button>
+                    <button type="button" data-bs-target="#packCarousel" data-bs-slide-to="1" aria-label="Слайд 2"></button>
+                    <button type="button" data-bs-target="#packCarousel" data-bs-slide-to="2" aria-label="Слайд 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="4000">
+                        <img src="images/news1.jpg" class="d-block w-100" alt="Пледи та свічки в осінньому стилі">
+                        <div class="carousel-caption d-none d-md-block"><h3 class="text-white">Сезонні набори</h3><p>Зібрані з любов'ю до кожної дрібниці</p></div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="images/product2.jpg" class="d-block w-100" alt="Вовняний плед">
+                        <div class="carousel-caption d-none d-md-block"><h3 class="text-white">Текстиль у тканинному мішечку</h3><p>Який можна використати повторно</p></div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="images/product4.jpg" class="d-block w-100" alt="Дерев'яний посуд">
+                        <div class="carousel-caption d-none d-md-block"><h3 class="text-white">Дерево та кераміка</h3><p>Кожен предмет — в окремій обгортці</p></div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#packCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Попередній</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#packCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Наступний</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ / Повернення (Accordion) ===== -->
+    <section id="faq" class="container py-5">
+        <h2 class="text-center mb-4">Часті питання</h2>
+        <div class="accordion col-lg-9 mx-auto" id="faqAccordion">
+            <div class="accordion-item" id="returns">
+                <h3 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="true" aria-controls="q1">
+                        Як повернути товар?
+                    </button>
+                </h3>
+                <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Протягом 14 днів зателефонуйте нам або напишіть на <a href="mailto:info@mirevo.ua">info@mirevo.ua</a>. Товар має бути без слідів використання та в оригінальній упаковці. Гроші повертаємо на картку протягом 3 робочих днів.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2" aria-expanded="false" aria-controls="q2">
+                        Чи можна змінити адресу після оформлення?
+                    </button>
+                </h3>
+                <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Так, поки посилку не передано перевізнику. Зателефонуйте за номером +38 (044) 123-45-67.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3" aria-expanded="false" aria-controls="q3">
+                        Що робити, якщо кераміка розбилася в дорозі?
+                    </button>
+                </h3>
+                <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Зніміть посилку на відео під час відкриття у відділенні та надішліть нам. Ми безкоштовно надішлемо заміну.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4" aria-expanded="false" aria-controls="q4">
+                        Чи доставляєте за кордон?
+                    </button>
+                </h3>
+                <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Так, через Нову пошту Глобал у країни ЄС. Вартість розраховується індивідуально.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Відстеження (форма Bootstrap) ===== -->
+    <section class="bg-mirevo py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <h2 class="text-center mb-3">Де моя посилка?</h2>
+                    <form class="input-group input-group-lg" action="#" method="get">
+                        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" name="ttn" placeholder="Номер ТТН, напр. 20450012345678" pattern="\d{14}" required aria-label="Номер ТТН">
+                        <button class="btn btn-mirevo" type="submit">Знайти</button>
+                    </form>
+                    <p class="form-text text-center">ТТН з 14 цифр приходить у SMS після відправки</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- ===== Footer (шаблон Bootstrap: Footers) ===== -->
+<footer class="bg-white border-top py-4">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <p class="mb-0 text-body-secondary">&copy; 2026 Мірево. Всі права захищені.</p>
+        <ul class="nav">
+            <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Головна</a></li>
+            <li class="nav-item"><a href="catalog.html" class="nav-link px-2 text-body-secondary">Каталог</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link px-2 text-body-secondary">Про нас</a></li>
+            <li class="nav-item"><a href="invitation.html" class="nav-link px-2 text-body-secondary">Запрошення</a></li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 (JS bundle з Popper) — потрібен для меню, каруселі та акордеону -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

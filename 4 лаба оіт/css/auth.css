@@ -1,0 +1,256 @@
+@charset "UTF-8";
+.auth-form {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(58, 46, 36, 0.12);
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  background: linear-gradient(rgba(240, 230, 216, 0.88), rgba(240, 230, 216, 0.94)), url("../images/product2.jpg") center/cover fixed;
+}
+.auth-page__logo {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #5c4a34;
+}
+.auth-page__logo:hover {
+  color: #c9a961;
+}
+.auth-page__back {
+  font-size: 0.9rem;
+  color: #6b5c4d;
+}
+.auth-page__back::before {
+  content: "← ";
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 27rem;
+  padding: 2.5rem;
+  animation: card-in 0.6s ease both;
+}
+@media (max-width: 30rem) {
+  .auth-form {
+    padding: 1.75rem 1.25rem;
+  }
+}
+.auth-form h1 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  color: #5c4a34;
+}
+.auth-form__subtitle {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b5c4d;
+}
+.auth-form .field {
+  margin-bottom: 1.1rem;
+}
+.auth-form .field label {
+  display: block;
+  margin: 0 0 0.3rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.auth-form .field input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #ddd0bd;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: #3a2e24;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.auth-form .field input:focus {
+  outline: none;
+  border-color: #c9a961;
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
+}
+.auth-form .field input:not(:placeholder-shown):valid {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f9a6b' stroke-width='3' stroke-linecap='round'><polyline points='20 6 9 17 4 12'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 1.1rem;
+  padding-right: 2.5rem;
+}
+.auth-form .field input:not(:placeholder-shown):not(:focus):invalid {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c4554d' stroke-width='3' stroke-linecap='round'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 1.1rem;
+  padding-right: 2.5rem;
+  animation: shake 0.3s ease;
+}
+.auth-form .field input:not(:placeholder-shown):not(:focus):invalid ~ .error-msg {
+  max-height: 3rem;
+  opacity: 1;
+  margin-top: 0.35rem;
+}
+.auth-form .field input:focus ~ .hint {
+  max-height: 3rem;
+  opacity: 1;
+  margin-top: 0.35rem;
+}
+.auth-form .field input:not(:placeholder-shown):not(:focus):valid {
+  border-color: #4f9a6b;
+  background-color: rgb(95.8588235294%, 97.6235294118%, 96.5176470588%);
+}
+.auth-form .field input:not(:placeholder-shown):not(:focus):invalid {
+  border-color: #c4554d;
+  background-color: rgb(98.6117647059%, 96%, 95.8117647059%);
+}
+.auth-form .hint,
+.auth-form .error-msg {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+.auth-form .hint {
+  color: #6b5c4d;
+}
+.auth-form .error-msg {
+  color: #c4554d;
+}
+.auth-form .error-msg::before {
+  content: "⚠ ";
+}
+.auth-form .field input:not(:placeholder-shown):not(:focus):invalid ~ .hint {
+  display: none;
+}
+.auth-form .agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0.5rem 0 0.25rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.auth-form .agree input {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.2rem;
+  accent-color: #8b6f4e;
+}
+.auth-form .agree input:checked + span {
+  color: #4f9a6b;
+}
+.auth-form button[type=submit] {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #8b6f4e;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+.auth-form button[type=submit]:hover {
+  background-color: #5c4a34;
+  transform: translateY(-2px);
+}
+.auth-form button[type=submit] {
+  margin-top: 1.5rem;
+}
+.auth-form button[type=reset] {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: #3a2e24;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+.auth-form button[type=reset]:hover {
+  background-color: #f0e6d8;
+  transform: translateY(-2px);
+}
+.auth-form button[type=reset] {
+  margin-top: 0.75rem;
+  border: 1px solid #ddd0bd;
+}
+.auth-form:invalid button[type=submit] {
+  opacity: 0.5;
+  pointer-events: none;
+  transform: none;
+}
+.auth-form .form-status {
+  margin: 1rem 0 0;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  text-align: center;
+  background-color: rgba(196, 85, 77, 0.08);
+  color: #c4554d;
+}
+.auth-form .form-status::before {
+  content: "Заповніть усі поля коректно";
+}
+.auth-form:valid .form-status {
+  background-color: rgba(79, 154, 107, 0.1);
+  color: #4f9a6b;
+}
+.auth-form:valid .form-status::before {
+  content: "✓ Усе готово — можна надсилати!";
+}
+.auth-form__footer {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.auth-form__footer a {
+  font-weight: 600;
+  color: #8b6f4e;
+}
+.auth-form__footer a:hover {
+  color: rgb(72.1901590825%, 57.5693673696%, 24.6725860155%);
+}

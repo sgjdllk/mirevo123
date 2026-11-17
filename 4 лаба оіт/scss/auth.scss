@@ -1,0 +1,261 @@
+// =====================================================================
+// ЛР4. Стилі сторінок входу та реєстрації, написані на Sass.
+// Компіляція: Live Sass Compiler (VS Code) або `sass scss/auth.scss css/auth.css`
+// Тут же — перевірка введених даних ЛИШЕ засобами HTML + CSS (без JS):
+// атрибути required / pattern / minlength / type="email"
+// + псевдокласи :valid, :invalid, :placeholder-shown, :focus, :checked.
+// =====================================================================
+
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Іконки станів (галочка / хрестик)
+$icon-valid: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f9a6b' stroke-width='3' stroke-linecap='round'><polyline points='20 6 9 17 4 12'/></svg>";
+$icon-invalid: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c4554d' stroke-width='3' stroke-linecap='round'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>";
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+    background:
+        linear-gradient(rgba($color-bg-secondary, 0.88), rgba($color-bg-secondary, 0.94)),
+        url('../images/product2.jpg') center / cover fixed;
+
+    &__logo {
+        font-family: $font-heading;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: $color-primary-dark;
+
+        &:hover {
+            color: $color-accent;
+        }
+    }
+
+    &__back {
+        font-size: 0.9rem;
+        color: $color-text-light;
+
+        &::before {
+            content: '\2190\00a0';
+        }
+    }
+}
+
+.auth-form {
+    @extend %card;
+    width: 100%;
+    max-width: 27rem;
+    padding: 2.5rem;
+    animation: card-in 0.6s ease both;
+
+    @include respond('phone') {
+        padding: 1.75rem 1.25rem;
+    }
+
+    h1 {
+        margin-bottom: 0.5rem;
+        text-align: center;
+        font-family: $font-heading;
+        color: $color-primary-dark;
+    }
+
+    &__subtitle {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: $color-text-light;
+    }
+
+    // ---------- Поле форми ----------
+    .field {
+        margin-bottom: 1.1rem;
+
+        label {
+            display: block;
+            margin: 0 0 0.3rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1px solid $color-border;
+            border-radius: $radius;
+            background-color: $color-white;
+            font-family: $font-body;
+            font-size: 1rem;
+            color: $color-text;
+            transition: border-color $transition, box-shadow $transition;
+
+            &:focus {
+                @include focus-ring;
+            }
+
+            // Валідне поле (лише після того, як користувач щось ввів)
+            &:not(:placeholder-shown):valid {
+                @include field-icon($icon-valid);
+            }
+
+            // Невалідне поле — тільки коли вже щось введено і фокус пішов
+            &:not(:placeholder-shown):not(:focus):invalid {
+                @include field-icon($icon-invalid);
+                animation: shake 0.3s ease;
+            }
+
+            // Показуємо повідомлення про помилку
+            &:not(:placeholder-shown):not(:focus):invalid ~ .error-msg {
+                max-height: 3rem;
+                opacity: 1;
+                margin-top: 0.35rem;
+            }
+
+            // Підказка видима під час введення
+            &:focus ~ .hint {
+                max-height: 3rem;
+                opacity: 1;
+                margin-top: 0.35rem;
+            }
+        }
+
+        // Кольори рамок для станів — згенеровані циклом @each
+        @each $state, $c in $field-states {
+            input:not(:placeholder-shown):not(:focus):#{$state} {
+                border-color: $c;
+                background-color: color.mix($c, $color-white, 6%);
+            }
+        }
+    }
+
+    .hint,
+    .error-msg {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        transition: max-height $transition, opacity $transition, margin $transition;
+    }
+
+    .hint {
+        color: $color-text-light;
+    }
+
+    .error-msg {
+        color: $color-error;
+
+        &::before {
+            content: '\26A0\00a0';
+        }
+    }
+
+    // Коли поле з помилкою — підказку не дублюємо
+    .field input:not(:placeholder-shown):not(:focus):invalid ~ .hint {
+        display: none;
+    }
+
+    // ---------- Чекбокс згоди ----------
+    .agree {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        margin: 0.5rem 0 0.25rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+
+        input {
+            flex-shrink: 0;
+            width: 1.1rem;
+            height: 1.1rem;
+            margin-top: 0.2rem;
+            accent-color: $color-primary;
+        }
+
+        input:checked + span {
+            color: $color-success;
+        }
+    }
+
+    // ---------- Кнопки ----------
+    button[type='submit'] {
+        @include button($color-primary, $color-primary-dark);
+        margin-top: 1.5rem;
+    }
+
+    button[type='reset'] {
+        @include button(transparent, $color-bg-secondary, $color-text);
+        margin-top: 0.75rem;
+        border: 1px solid $color-border;
+    }
+
+    // Поки форма невалідна — кнопка «напівпрозора» і не реагує
+    &:invalid button[type='submit'] {
+        opacity: 0.5;
+        pointer-events: none;
+        transform: none;
+    }
+
+    // Статус форми над кнопкою — теж без JS
+    .form-status {
+        margin: 1rem 0 0;
+        padding: 0.6rem 0.8rem;
+        border-radius: $radius;
+        font-size: 0.85rem;
+        text-align: center;
+        background-color: rgba($color-error, 0.08);
+        color: $color-error;
+
+        &::before {
+            content: 'Заповніть усі поля коректно';
+        }
+    }
+
+    &:valid .form-status {
+        background-color: rgba($color-success, 0.1);
+        color: $color-success;
+
+        &::before {
+            content: '\2713\00a0Усе готово — можна надсилати!';
+        }
+    }
+
+    &__footer {
+        margin: 1.5rem 0 0;
+        text-align: center;
+        font-size: 0.9rem;
+
+        a {
+            font-weight: 600;
+            color: $color-primary;
+
+            &:hover {
+                color: color.adjust($color-accent, $lightness: -10%);
+            }
+        }
+    }
+}
